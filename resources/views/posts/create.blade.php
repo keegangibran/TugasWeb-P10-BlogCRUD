@@ -4,41 +4,99 @@
 
 @section('content')
 
-    <h2>Buat Post Baru</h2>
+    <div class="form-page">
 
-    <form action="{{ route('posts.store') }}" method="POST">
-        @csrf
+        <div class="form-page-header">
 
-        <div>
-            <label for="title">Judul</label>
-
-            <input
-                type="text"
-                id="title"
-                name="title"
-                value="{{ old('title') }}"
+            <a
+                href="{{ route('posts.index') }}"
+                class="back-button"
             >
+                ← Kembali ke Daftar
+            </a>
 
-            @error('title')
-                <p>{{ $message }}</p>
-            @enderror
+            <span class="detail-label">
+                NEW POST
+            </span>
+
+            <h2>Buat Post Baru</h2>
+
+            <p>
+                Tuangkan ide dan ceritamu ke dalam sebuah tulisan.
+            </p>
+
         </div>
 
-        <div>
-            <label for="content">Isi</label>
 
-            <textarea
-                id="content"
-                name="content"
-                rows="8"
-            >{{ old('content') }}</textarea>
+        <form
+            action="{{ route('posts.store') }}"
+            method="POST"
+            class="post-form"
+        >
 
-            @error('content')
-                <p>{{ $message }}</p>
-            @enderror
-        </div>
+            @csrf
 
-        <button type="submit">Simpan Post</button>
-    </form>
+            <div class="form-group">
+
+                <label for="title">
+                    Judul Post
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="{{ old('title') }}"
+                    placeholder="Masukkan judul post..."
+                >
+
+                @error('title')
+                    <p class="field-error">{{ $message }}</p>
+                @enderror
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="content">
+                    Isi Post
+                </label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    rows="10"
+                    placeholder="Tulis sesuatu yang menarik..."
+                >{{ old('content') }}</textarea>
+
+                @error('content')
+                    <p class="field-error">{{ $message }}</p>
+                @enderror
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <a
+                    href="{{ route('posts.index') }}"
+                    class="secondary-button"
+                >
+                    Batal
+                </a>
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Publikasikan Post
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 
 @endsection
