@@ -20,6 +20,8 @@
     </header>
 
     <main>
+        <x-alert />
+
         @yield('content')
     </main>
 
