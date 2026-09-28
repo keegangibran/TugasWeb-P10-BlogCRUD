@@ -58,8 +58,12 @@ class PostController extends Controller
             ->with('success', 'Post berhasil diperbarui.');
     }
 
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post berhasil dihapus.');
     }
 }
