@@ -39,14 +39,23 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string'],
+        ]);
+
+        $post->update($validated);
+
+        return redirect()
+            ->route('posts.show', $post)
+            ->with('success', 'Post berhasil diperbarui.');
     }
 
     public function destroy(string $id)
