@@ -6,4 +6,10 @@
     <small>
         Dibuat: {{ $post->created_at->format('d M Y') }}
     </small>
+
+    <br><br>
+
+    <a href="{{ route('posts.show', $post) }}">
+        Lihat Detail
+    </a>
 </article>
